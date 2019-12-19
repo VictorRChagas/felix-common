@@ -4,11 +4,13 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
 import static com.felix.common.date.Dates.*;
+import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -108,24 +110,79 @@ public class DatesTest {
     }
 
     @Test
-    void getIntervalWithLocalDateTest() {
-        List<LocalDate> dates = getInterval(specificLocalDate, specificLocalDate.plusDays(10), IntervalType.DAY);
+    void getIntervalWithLocalDateDayTest() {
+        List<LocalDate> dates = getInterval(specificLocalDate, specificLocalDate.plusDays(10), ChronoUnit.DAYS);
 
         assertEquals(11, dates.size());
 
-        assertThat(getInterval(specificLocalDate, specificLocalDate, IntervalType.DAY),
+        assertThat(getInterval(specificLocalDate, specificLocalDate, ChronoUnit.DAYS),
                 is(Collections.singletonList(specificLocalDate)));
 
         assertThrows(NullPointerException.class, () ->
-                getInterval(null, specificLocalDate.plusDays(1), IntervalType.DAY), "Start date is null.");
+                getInterval(null, specificLocalDate.plusDays(1), ChronoUnit.DAYS), "Start date is null.");
 
         assertThrows(NullPointerException.class, () ->
-                getInterval(specificLocalDate, null, IntervalType.DAY), "End date is null.");
+                getInterval(specificLocalDate, null, ChronoUnit.DAYS), "End date is null.");
 
         assertThrows(NullPointerException.class, () ->
-                getInterval(specificLocalDate, specificLocalDate.plusDays(1), null), "IntervalType is null.");
+                getInterval(specificLocalDate, specificLocalDate.plusDays(1), null), "ChronoUnit is null.");
 
         assertThrows(IllegalArgumentException.class, () ->
-                getInterval(specificLocalDate, specificLocalDate.minusDays(1), IntervalType.DAY), "Start date is after end date.");
+                getInterval(specificLocalDate, specificLocalDate.minusDays(1), ChronoUnit.DAYS), "Start date is after end date.");
+    }
+
+    @Test
+    void getIntervalWithLocalDateMonthTest() {
+        List<LocalDate> dates = getInterval(LocalDate.of(2019, 1, 1), LocalDate.of(2019, 12, 1), ChronoUnit.MONTHS);
+        assertEquals(12, dates.size());
+        assertThat(dates, hasItems(LocalDate.of(2019, 10, 1), LocalDate.of(2019, 9, 1)));
+
+        dates = getInterval(LocalDate.of(2018, 1, 1), LocalDate.of(2019, 12, 1), ChronoUnit.MONTHS);
+        assertEquals(24, dates.size());
+        assertThat(dates, hasItems(LocalDate.of(2018, 10, 1), LocalDate.of(2019, 9, 1)));
+    }
+
+    @Test
+    void getIntervalWithLocalDateYearTest() {
+        List<LocalDate> dates = getInterval(LocalDate.of(2000, 1, 1), LocalDate.of(2019, 12, 1), ChronoUnit.YEARS);
+        assertEquals(20, dates.size());
+        assertThat(dates, hasItems(LocalDate.of(2015, 1, 1), LocalDate.of(2019, 1, 1)));
+    }
+
+    @Test
+    void getIntervalWithLocalDateTimeHourTest() {
+        List<LocalDateTime> dates = getInterval(specificLocalDateTime, specificLocalDateTime.plusHours(24), ChronoUnit.HOURS);
+
+        assertEquals(25, dates.size());
+
+        assertThat(getInterval(specificLocalDateTime, specificLocalDateTime, ChronoUnit.HOURS),
+                is(Collections.singletonList(specificLocalDateTime)));
+
+        assertThrows(NullPointerException.class, () ->
+                getInterval(null, specificLocalDateTime.plusDays(1), ChronoUnit.HOURS), "Start date is null.");
+
+        assertThrows(NullPointerException.class, () ->
+                getInterval(specificLocalDateTime, null, ChronoUnit.HOURS), "End date is null.");
+
+        assertThrows(NullPointerException.class, () ->
+                getInterval(specificLocalDateTime, specificLocalDateTime.plusDays(1), null), "ChronoUnit is null.");
+
+        assertThrows(IllegalArgumentException.class, () ->
+                getInterval(specificLocalDateTime, specificLocalDateTime.minusDays(1), ChronoUnit.HOURS), "Start date is after end date.");
+    }
+
+    @Test
+    void getPeriodWithLocalDateTest() {
+        assertEquals(30, getPeriod(specificLocalDate, specificLocalDate.plusDays(30), ChronoUnit.DAYS));
+        assertEquals(30, getPeriod(specificLocalDate, specificLocalDate.plusMonths(30), ChronoUnit.MONTHS));
+        assertEquals(30, getPeriod(specificLocalDate, specificLocalDate.plusYears(30), ChronoUnit.YEARS));
+    }
+
+    @Test
+    void getPeriodWithLocalDateTimeTest() {
+        assertEquals(30, getPeriod(specificLocalDateTime, specificLocalDateTime.plusDays(30), ChronoUnit.DAYS));
+        assertEquals(30, getPeriod(specificLocalDateTime, specificLocalDateTime.plusHours(30), ChronoUnit.HOURS));
+        assertEquals(30, getPeriod(specificLocalDateTime, specificLocalDateTime.plusMinutes(30), ChronoUnit.MINUTES));
+        assertEquals(30, getPeriod(specificLocalDateTime, specificLocalDateTime.plusSeconds(30), ChronoUnit.SECONDS));
     }
 }

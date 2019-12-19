@@ -100,39 +100,58 @@ public class Dates {
         }
     }
 
-    public static List<LocalDate> getInterval(LocalDate start, LocalDate end, IntervalType type) {
+    public static List<LocalDate> getInterval(LocalDate start, LocalDate end, ChronoUnit chrono) {
         requireNonNull(start, "Start date is null.");
         requireNonNull(end, "End date is null.");
-        requireNonNull(type, "IntervalType is null.");
+        requireNonNull(chrono, "ChronoUnit is null.");
 
         if (start.isAfter(end))
             throw new IllegalArgumentException("Start date is after end date.");
 
         LongFunction<LocalDate> incrementDate = i -> {
-            switch (type) {
-                case DAY: return start.plusDays(i);
-                case MONTH: return start.plusMonths(i);
-                case YEAR: return start.plusYears(i);
+            switch (chrono) {
+                case DAYS: return start.plusDays(i);
+                case MONTHS: return start.plusMonths(i);
+                case YEARS: return start.plusYears(i);
                 default: return null;
             }
         };
 
-        return LongStream.range(0, getPeriod(start, end, type.getChrono()) + 1)
+        return LongStream.range(0, getPeriod(start, end, chrono) + 1)
                 .mapToObj(incrementDate)
                 .collect(Collectors.toList());
     }
 
-    public static List<LocalDate> getInterval(LocalDateTime start, LocalDateTime end, IntervalType type) {
-        //todo
-        return null;
+    public static List<LocalDateTime> getInterval(LocalDateTime start, LocalDateTime end, ChronoUnit chrono) {
+        requireNonNull(start, "Start date is null.");
+        requireNonNull(end, "End date is null.");
+        requireNonNull(chrono, "ChronoUnit is null.");
+
+        if (start.isAfter(end))
+            throw new IllegalArgumentException("Start date is after end date.");
+
+        LongFunction<LocalDateTime> incrementDate = i -> {
+            switch (chrono) {
+                case DAYS: return start.plusDays(i);
+                case MONTHS: return start.plusMonths(i);
+                case YEARS: return start.plusYears(i);
+                case HOURS: return start.plusHours(i);
+                case MINUTES: return start.plusMinutes(i);
+                case SECONDS: return start.plusSeconds(i);
+                default: return null;
+            }
+        };
+
+        return LongStream.range(0, getPeriod(start, end, chrono) + 1)
+                .mapToObj(incrementDate)
+                .collect(Collectors.toList());
     }
 
     public static long getPeriod(LocalDate start, LocalDate end, ChronoUnit type) {
-        return Period.between(start, end).get(type);
+        return ChronoUnit.valueOf(type.name()).between(start, end);
     }
 
     public static long getPeriod(LocalDateTime start, LocalDateTime end, ChronoUnit type) {
-        //todo
-        return 0;
+        return ChronoUnit.valueOf(type.name()).between(start, end);
     }
 }
