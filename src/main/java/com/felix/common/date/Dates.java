@@ -1,12 +1,16 @@
 package com.felix.common.date;
 
+import com.sun.org.apache.bcel.internal.generic.PUSH;
+
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 public class Dates {
@@ -82,4 +86,28 @@ public class Dates {
         return date.format(DateTimeFormatter.ofPattern(format));
     }
 
+    public static Date parseDate(String date) {
+        //todo
+        return null;
+    }
+
+    public static List<LocalDate> getInterval(LocalDate start, LocalDate end, IntervalType type) {
+        //todo
+        return null;
+    }
+
+    public static List<LocalDate> getInterval(LocalDateTime start, LocalDateTime end, IntervalType type) {
+        //todo
+        return null;
+    }
+
+    public static long getDistanceBetween(LocalDate start, LocalDate end, ChronoUnit type) {
+        //todo
+        return 0;
+    }
+
+    public static long getDistanceBetween(LocalDateTime start, LocalDateTime end, ChronoUnit type) {
+        //todo
+        return 0;
+    }
 }
