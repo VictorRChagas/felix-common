@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.github.felixgilioli</groupId>
     <artifactId>felix-common</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <name>felix-common</name>
     <description>A project maven</description>
     <url>https://github.com/felixgilioli/felix-common</url>
@@ -27,6 +25,11 @@
     </developers>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <java.version>1.8</java.version>
         <deploy.plugin.version>2.8.2</deploy.plugin.version>
         <maven.release.plugin.version>2.5.3</maven.release.plugin.version>
         <maven.scm.provider.gitexe.version>1.9.5</maven.scm.provider.gitexe.version>
@@ -39,7 +42,7 @@
         <connection>scm:git:git://github.com/mariazevedo88/json-formatter-validator.git</connection>
         <developerConnection>scm:git:git@github.com/felixgilioli/felix-common.git</developerConnection>
         <url>https://github.com/felixgilioli/felix-common</url>
-        <tag>felix-common-1.0.0</tag>
+        <tag>felix-common-1.0</tag>
     </scm>
 
     <distributionManagement>
