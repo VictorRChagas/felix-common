@@ -4,7 +4,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.Period;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -147,11 +146,17 @@ public class Dates {
                 .collect(Collectors.toList());
     }
 
-    public static long getPeriod(LocalDate start, LocalDate end, ChronoUnit type) {
-        return ChronoUnit.valueOf(type.name()).between(start, end);
+    public static long getPeriod(LocalDate start, LocalDate end, ChronoUnit chrono) {
+        requireNonNull(start, "Start date is null.");
+        requireNonNull(end, "End date is null.");
+        requireNonNull(chrono, "ChronoUnit is null.");
+        return ChronoUnit.valueOf(chrono.name()).between(start, end);
     }
 
-    public static long getPeriod(LocalDateTime start, LocalDateTime end, ChronoUnit type) {
-        return ChronoUnit.valueOf(type.name()).between(start, end);
+    public static long getPeriod(LocalDateTime start, LocalDateTime end, ChronoUnit chrono) {
+        requireNonNull(start, "Start date is null.");
+        requireNonNull(end, "End date is null.");
+        requireNonNull(chrono, "ChronoUnit is null.");
+        return ChronoUnit.valueOf(chrono.name()).between(start, end);
     }
 }
