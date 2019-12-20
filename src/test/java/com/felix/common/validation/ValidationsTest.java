@@ -19,8 +19,7 @@ public class ValidationsTest {
 
         assertDoesNotThrow(() -> validate(new StringMinLengthValidator("aa")));
 
-        assertThrows(ValidatorException.class, () -> Validations
-                .of(new StringMinLengthValidator("ab"), new IntegerMinValidator(0))
+        assertThrows(ValidatorException.class, () -> of(new StringMinLengthValidator("ab"), new IntegerMinValidator(0))
                 .validate());
     }
 
@@ -28,10 +27,10 @@ public class ValidationsTest {
     void ifValidTest() {
         new StringMinLengthValidator("a").ifValid(Assertions::fail);
         new StringMinLengthValidator("abc").ifValid(() -> {});
-        Validations.of(new StringMinLengthValidator(null), new IntegerMinValidator(0))
+        of(new StringMinLengthValidator(null), new IntegerMinValidator(0))
                 .ifValid(Assertions::fail);
 
-        Validations.of(new StringMinLengthValidator("das"), new IntegerMinValidator(2))
+        of(new StringMinLengthValidator("das"), new IntegerMinValidator(2))
                 .ifNotValid(Assertions::fail);
     }
 
@@ -47,10 +46,10 @@ public class ValidationsTest {
     void ifNotValidTest() {
         new StringMinLengthValidator("aaa").ifNotValid(Assertions::fail);
         new StringMinLengthValidator("a").ifNotValid(() -> {});
-        Validations.of(new StringMinLengthValidator("das"), new IntegerMinValidator(2))
+        of(new StringMinLengthValidator("das"), new IntegerMinValidator(2))
                 .ifNotValid(Assertions::fail);
 
-        Validations.of(new StringMinLengthValidator("das"), new IntegerMinValidator(2))
+        of(new StringMinLengthValidator("das"), new IntegerMinValidator(2))
                 .ifNotValid(() -> {});
     }
 
@@ -59,10 +58,10 @@ public class ValidationsTest {
         new StringMinLengthValidator("aaa").ifValidOrElse(() -> {}, Assertions::fail);
         new StringMinLengthValidator("a").ifValidOrElse(Assertions::fail, () -> {});
 
-        Validations.of(new StringMinLengthValidator("das"), new IntegerMinValidator(2))
+        of(new StringMinLengthValidator("das"), new IntegerMinValidator(2))
                 .ifValidOrElse(() -> {}, Assertions::fail);
 
-        Validations.of(new StringMinLengthValidator(""), new IntegerMinValidator(2))
+        of(new StringMinLengthValidator(""), new IntegerMinValidator(2))
                 .ifValidOrElse(Assertions::fail, () -> {});
     }
 
