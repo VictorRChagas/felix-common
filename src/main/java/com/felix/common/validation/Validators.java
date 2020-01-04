@@ -1,15 +1,15 @@
 package com.felix.common.validation;
 
-public class Validations {
+public class Validators {
 
     private final Validator[] validators;
 
-    private Validations(Validator[] validators) {
+    private Validators(Validator[] validators) {
         this.validators = validators;
     }
 
-    public static Validations of(Validator... validators) {
-        return new Validations(validators);
+    public static Validators of(Validator... validators) {
+        return new Validators(validators);
     }
 
     public void validate() {

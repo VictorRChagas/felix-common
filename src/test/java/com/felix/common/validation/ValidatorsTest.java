@@ -3,10 +3,10 @@ package com.felix.common.validation;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static com.felix.common.validation.Validations.*;
+import static com.felix.common.validation.Validators.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ValidationsTest {
+public class ValidatorsTest {
 
     @Test
     void validateTest() {
