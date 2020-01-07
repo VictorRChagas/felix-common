@@ -14,4 +14,8 @@ public class Strings {
                 .map(Strings::capitalize)
                 .collect(Collectors.joining(" "));
     }
+
+    public static String formatCamelCase(String s) {
+        return null;//todo
+    }
 }
