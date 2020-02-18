@@ -3,6 +3,8 @@ package com.felix.common.string;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
+import static java.util.Objects.requireNonNull;
+
 public class Strings {
 
     public static String capitalize(String s) {
@@ -13,6 +15,11 @@ public class Strings {
         return Arrays.stream(s.split(" "))
                 .map(Strings::capitalize)
                 .collect(Collectors.joining(" "));
+    }
+
+    public static String formatToLike(String query) {
+        requireNonNull(query);
+        return '%' + query.toLowerCase() + '%';
     }
 
     public static String formatCamelCase(String s) {
