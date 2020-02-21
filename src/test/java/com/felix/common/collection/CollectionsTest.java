@@ -18,4 +18,5 @@ public class CollectionsTest {
         assertTrue(Collections.isNullOrEmpty(new HashSet()));
         assertFalse(Collections.isNullOrEmpty(Arrays.asList(1, 2, 3)));
     }
+
 }

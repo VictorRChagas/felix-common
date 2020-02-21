@@ -1,14 +1,16 @@
 package com.felix.common.collection;
 
+import com.felix.common.Person;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ListsTest {
 
@@ -33,5 +35,14 @@ public class ListsTest {
         List<String> stringList = Arrays.asList("1", "2", "3");
         Assertions.assertEquals("1", Lists.emptyIfNull(stringList).get(0));;
         Assertions.assertTrue(Lists.emptyIfNull(null).isEmpty());
+    }
+
+
+    @Test
+    void groupBy() {
+        List<Person> personList = Person.getPersons();
+        Map<String, List<Person>> map = Lists.groupBy(personList, Person::getName);
+        assertDoesNotThrow(() -> Lists.groupBy(Collections.emptyList(), Object::hashCode));
+        Assertions.assertEquals(personList.get(0), map.get("Felix").get(0));
     }
 }
