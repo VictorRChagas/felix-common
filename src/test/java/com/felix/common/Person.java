@@ -1,12 +1,14 @@
 package com.felix.common;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
-public class Person {
+public class Person implements Serializable {
 
     private Integer id;
     private String name;
+    private Phone phone;
 
     public Person() {
 
@@ -15,6 +17,12 @@ public class Person {
     public Person(Integer id, String name) {
         this.id = id;
         this.name = name;
+    }
+
+    public Person(Integer id, String name, Phone phone) {
+        this.id = id;
+        this.name = name;
+        this.phone = phone;
     }
 
     @Override
@@ -36,15 +44,12 @@ public class Person {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public Phone getPhone() {
+        return phone;
     }
+
 }

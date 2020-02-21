@@ -1,9 +1,10 @@
 package com.felix.common.object;
 
+import com.felix.common.Person;
+import com.felix.common.Phone;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ObjectsTest {
 
@@ -13,5 +14,14 @@ public class ObjectsTest {
         assertTrue(Objects.hasNull(null));
         assertTrue(Objects.hasNull());
         assertFalse(Objects.hasNull(1L, "teste", "aaa"));
+    }
+
+    @Test
+    void copyTest() {
+        Person felix = new Person(1, "Felix", new Phone("46", "991142429"));
+        Person felixCopy = Objects.clone(felix);
+
+        assertNotSame(felix, felixCopy);
+        assertNotSame(felix.getPhone(), felixCopy.getPhone());
     }
 }
