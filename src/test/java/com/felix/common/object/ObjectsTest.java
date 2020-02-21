@@ -17,7 +17,7 @@ public class ObjectsTest {
     }
 
     @Test
-    void copyTest() {
+    void cloneTest() {
         Person felix = new Person(1, "Felix", new Phone("46", "991142429"));
         Person felixCopy = Objects.clone(felix);
 
