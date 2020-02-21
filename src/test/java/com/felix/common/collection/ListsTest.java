@@ -39,7 +39,7 @@ public class ListsTest {
 
 
     @Test
-    void groupBy() {
+    void groupByTest() {
         List<Person> personList = Person.getPersons();
         Map<String, List<Person>> map = Lists.groupBy(personList, Person::getName);
         assertDoesNotThrow(() -> Lists.groupBy(Collections.emptyList(), Object::hashCode));

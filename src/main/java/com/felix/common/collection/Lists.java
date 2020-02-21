@@ -38,5 +38,4 @@ public class Lists {
                 .collect(Collectors.groupingBy(function));
     }
 
-    //anyMatch
 }
