@@ -1,15 +1,18 @@
 package com.felix.common;
 
-public class People {
+import java.util.Arrays;
+import java.util.List;
+
+public class Person {
 
     private Integer id;
     private String name;
 
-    public People() {
+    public Person() {
 
     }
 
-    public People(Integer id, String name) {
+    public Person(Integer id, String name) {
         this.id = id;
         this.name = name;
     }
@@ -20,6 +23,13 @@ public class People {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';
+    }
+
+    public static List<Person> getPersons() {
+        return Arrays.asList(
+                new Person(1, "Felix"),
+                new Person(2, "Ricardo"),
+                new Person(3, "João"));
     }
 
     public Integer getId() {

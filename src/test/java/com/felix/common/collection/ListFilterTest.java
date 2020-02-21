@@ -1,6 +1,6 @@
 package com.felix.common.collection;
 
-import com.felix.common.People;
+import com.felix.common.Person;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -11,13 +11,13 @@ public class ListFilterTest {
 
     @Test
     void nextTest() {
-        List<People> list = Arrays.asList(new People(1, "Felix"),
-                new People(2, "Ricardo"));
+        List<Person> list = Arrays.asList(new Person(1, "Felix"),
+                new Person(2, "Ricardo"));
 
-        ListFilter<People, Integer> listFilter = ListFilter.of(list)
-                .compareWith(People::getId);
+        ListFilter<Person, Integer> listFilter = ListFilter.of(list)
+                .compareWith(Person::getId);
 
-        Optional<People> next = listFilter.next(1);
+        Optional<Person> next = listFilter.next(1);
 
         System.out.println(next.get());
     }
