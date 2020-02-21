@@ -22,7 +22,4 @@ public class Strings {
         return '%' + query.toLowerCase() + '%';
     }
 
-    public static String formatCamelCase(String s) {
-        return null;//todo
-    }
 }

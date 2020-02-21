@@ -29,4 +29,6 @@ public class Lists {
     public static <T> List<T> emptyIfNull(List<T> c) {
         return c == null ? Collections.emptyList() : c;
     }
+
+    //anyMatch
 }
