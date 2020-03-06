@@ -4,7 +4,7 @@
 
     <groupId>io.github.felixgilioli</groupId>
     <artifactId>felix-common</artifactId>
-    <version>1.8</version>
+    <version>1.9-SNAPSHOT</version>
     <name>felix-common</name>
     <description>A project maven</description>
     <url>https://github.com/felixgilioli/felix-common</url>
@@ -41,7 +41,7 @@
         <connection>scm:git:git://github.com/mariazevedo88/json-formatter-validator.git</connection>
         <developerConnection>scm:git:git@github.com/felixgilioli/felix-common.git</developerConnection>
         <url>https://github.com/felixgilioli/felix-common</url>
-        <tag>felix-common-1.8</tag>
+        <tag>felix-common-1.0.3</tag>
     </scm>
 
     <distributionManagement>
