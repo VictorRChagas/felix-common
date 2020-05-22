@@ -22,4 +22,7 @@ public class Strings {
         return '%' + query.toLowerCase() + '%';
     }
 
+    public static String emptyIfNull(String value) {
+        return value != null ? value : "";
+    }
 }

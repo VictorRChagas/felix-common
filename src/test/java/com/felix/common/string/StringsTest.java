@@ -27,4 +27,16 @@ public class StringsTest {
         assertEquals("%%", Strings.formatToLike(""));
         assertThrows(NullPointerException.class, () -> Strings.formatToLike(null));
     }
+
+    @Test
+    void replaceWithEmptyStringIfNullValue() {
+        String string = Strings.emptyIfNull(null);
+        assertEquals("", string);
+    }
+
+    @Test
+    void returnValueIfNotNull() {
+        String string = Strings.emptyIfNull("test");
+        assertEquals("test", string);
+    }
 }
